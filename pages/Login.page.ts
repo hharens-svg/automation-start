@@ -19,37 +19,39 @@ export class Login {
 
     constructor(page: Page) {
         this.page = page;
+
         this.logoSVG = page.locator('.logo');
-        this.labelLogin = page.locator('div:nth-child(1) h2');
-        this.labelPleaseLoginToContinue = page.locator('div:nth-child(1) p');
-        this.labelSystemVerification = page.locator('div:nth-child(1) div.v-col.hidden-xs-only.sm6.right-side h2');
-        this.labelSalesApp = page.locator('div:nth-child(1) div.v-col.hidden-xs-only.sm6.right-side h3');
-        this.labelNotRegisteredYet = page.locator('div.v-container.v-locale--is-ltr > div.v-col > p');
-        this.labelImpressum = page.locator('footer a');
+
+        this.labelLogin = page.getByRole('heading', { name: 'Login' });
+        this.labelPleaseLoginToContinue = page.getByText('Please log in to continue.');
+        this.labelSystemVerification = page.getByRole('heading', { name: 'System Verification' });
+        this.labelSalesApp = page.getByRole('heading', { name: 'Sales App' });
+        this.labelNotRegisteredYet = page.getByText('Not registered yet?Sign up');
+        this.labelImpressum = page.getByRole('link', { name: 'Impressum' });
+
         this.inputEmailAdress = page.locator('#input-1');
         this.inputPassword = page.locator('#password');
+
         this.warningEmailAdress = page.locator('#input-1-messages');
         this.warningPassword = page.locator('#password-messages');
+
         this.buttonLogin = page.locator('#ibtn');
-        this.buttonSignup = page.locator('div.v-container.v-locale--is-ltr > div.v-col > p > span > button');
-        this.buttonLogin = page.locator('#ibtn');
+        this.buttonSignup = page.getByRole('button', { name: 'Sign up' });
     }
 
     async goTo() {
         await this.page.goto(this.url);
     }
-}
 
-// SVG logo: ".logo"
-// Login: "div:nth-child(1) h2"
-// Please log in to continue: "div:nth-child(1) p"
-// System Verification: "div:nth-child(1) div.v-col.hidden-xs-only.sm6.right-side h2"
-// Sales App: "div:nth-child(1) div.v-col.hidden-xs-only.sm6.right-side h3"
-// Not registered yet?: "div.v-container.v-locale--is-ltr > div.v-col > p"
-// E-mail is required: "#input-1-messages"
-// Password is required: "#password-messages"
-// Email Adress: "#input-1"
-// Password: "#password"
-// Log in button: "#ibtn"
-// Sign up button: "div.v-container.v-locale--is-ltr > div.v-col > p > span > button"
-// Impressum: "footer a"
+    async login(email?: string, password?:string){
+
+        if (email!=undefined){
+            this.inputEmailAdress.fill(email);
+        }
+
+        if (password!=undefined){
+            this.inputPassword.fill(password);
+        }
+
+    }
+}
