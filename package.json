@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test":"npx playwright test",
-    "report":"npx playwright show-report"
+    "test": "npx playwright test",
+    "report": "npx playwright show-report"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/hharens-svg/automation-start#readme",
   "devDependencies": {
-    "@playwright/test": "^1.58.1",
+    "@playwright/test": "^1.60.0",
     "@types/node": "^25.2.0"
   }
 }
